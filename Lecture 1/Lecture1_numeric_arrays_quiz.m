@@ -1,5 +1,5 @@
 % Lecture 1, numeric arrays, Pascal Triangle
-n=10;
+n=100;
 A = zeros(n);
 
 % Rowwise Pascal Triangle
@@ -29,6 +29,6 @@ toc
 
 % Find difference between sum of odd and even entries
 row_n = A(n,:);
-diff = sum(row_n(mod(row_n,2)==1)) - sum(row_n(mod(row_n,2)==0))
+diff = sum(mod(row_n,2)==1) - sum(mod(row_n,2)==0)
 
 
