@@ -72,6 +72,42 @@ courses = make_course_struct(g);
 % Feel free to use a box below to write a code.
 
 %Write your code here%
+% compute GPA
+gpa = GPA(courses)
+
+% find department with highest number of units
+depts = unique({courses.department});
+n = length(depts);
+total_gpa_units = zeros(n,1);
+for i=1:n
+    total_gpa_units(i) = sum([courses(strcmp({courses.department}, depts{i})==1).gpa_units]);
+end
+[val, idx] = max(total_gpa_units);
+dept_with_max_units = depts(idx)
+
+% find the quarter with the lowerst GPA
+qtrs = unique({courses.quarter});
+m = length(qtrs);
+qtr_gpas = zeros(m,1);
+for i=1:m
+    qtr_gpas(i) = GPA(courses(strcmp({courses.quarter}, qtrs{i})==1));
+end
+[val, idx] = min(qtr_gpas);
+qtr_with_min_gpa = qtrs(idx)
+
+% difference between first and last quarter
+courses_first_qtr = courses(strcmp({courses.quarter}, 'Summer')==1 & [courses.academic_year]==0);
+courses_last_qtr = courses(strcmp({courses.quarter}, 'Winter')==1 & [courses.academic_year]==3);
+gpa_first_qtr = GPA(courses_first_qtr);
+gpa_last_qtr = GPA(courses_last_qtr);
+
+gpa_diff = gpa_first_qtr - gpa_last_qtr;
+
+% Calculate the total number of classes taken
+num_classes_taken = length(courses);
+
+% total number of graudation units
+total_grad_units = sum([courses.grad_units]);
 %% Checkpoint
 % Please answer the following questions and put the answers in the EdX page:
 % 
