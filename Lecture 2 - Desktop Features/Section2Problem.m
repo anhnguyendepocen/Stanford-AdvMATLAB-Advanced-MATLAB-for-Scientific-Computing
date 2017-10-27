@@ -45,6 +45,25 @@ profile viewer;
 % Feel free to use the box code below.
 
 %Write your code here%
+%Write your code here%
+n=10;
+unopt_times=zeros(1,n);
+opt_times=zeros(1,n);
+% calculate the time of the unoptimized code
+for k=1:n
+    tic;
+    optimize_me;
+    unopt_times(k) = toc;
+end
+
+% get the time of the optimized code
+for k=1:n
+    tic;
+    optimized;
+    opt_times(k) = toc;
+end
+
+time_ratio = mean(opt_times)/mean(unopt_times)
 %% Checkpoint
 % Please answer the following questions and put the answers in the EdX page:
 % 
